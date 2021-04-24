@@ -12,12 +12,21 @@ export const GlobalStyle = createGlobalStyle`
          sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+		text-align: center;
   }
 
    code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
          monospace;
 }
+	 #root{
+		 display: inline-grid;
+	 }
+	 
+	 image{
+     max-width: max-content;
+     max-height: min-content;
+	 }
 `
 
 export default GlobalStyle
