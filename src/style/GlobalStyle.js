@@ -6,13 +6,13 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body {
-  margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
          sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-		text-align: center;
+		text-align: left;
+		margin-left: 40px;
   }
 
    code {
@@ -20,12 +20,12 @@ export const GlobalStyle = createGlobalStyle`
          monospace;
 }
 	 #root{
-		 display: inline-grid;
+		 display: inline-flex;
+     flex-direction: column;
 	 }
-	 
-	 image{
-     max-width: max-content;
-     max-height: min-content;
+	 .epub-container{
+		 background-color: #F6EA7BFF;
+		 order: 1;
 	 }
 `
 
