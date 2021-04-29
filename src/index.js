@@ -28,9 +28,10 @@ const App = () => {
 			height: 800,
 			flow: "paginated",
 		})
+		// eslint-disable-next-line
+		renditionBook.themes.default({ ".calibre": { "font-size": "1.5em" } })
 		renditionBook.display()
 		setRendition(renditionBook)
-		// eslint-disable-next-line
 	}, [])
 
 	const prevPage = () => {
