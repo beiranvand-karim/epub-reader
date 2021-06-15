@@ -1,63 +1,22 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import ReactDOM from "react-dom"
-import ePub from "epubjs"
-import styled from "styled-components"
-import { Button } from "@material-ui/core"
-import {
-	NavigateNext as Next,
-	NavigateBefore as Prev,
-} from "@material-ui/icons"
-
+import { Provider } from "react-redux"
+import { store } from "./state"
 import { GlobalStyle } from "./style"
-import eBook from "./assets/larsson-stieg-luftslottet-som-sprängdes.epub"
-
-const ButtonContainerStyled = styled.div`
-	display: flex;
-	justify-content: space-between;
-	order: 2;
-	margin-top: 10px;
-`
+import { StylesProvider } from "@material-ui/core/styles"
+import RenderingEpub from "./components/RenderingEpub"
+import TranslatedContent from "./components/TranslatedContent"
 
 const App = () => {
-	const [rendition, setRendition] = useState(null)
-
-	useEffect(() => {
-		const book = ePub(eBook)
-		const renditionBook = book.renderTo("root", {
-			width: 400,
-			height: 800,
-			flow: "paginated",
-		})
-		// eslint-disable-next-line
-		renditionBook.themes.default({ ".calibre": { "font-size": "1.5em" } })
-		renditionBook.display()
-		setRendition(renditionBook)
-	}, [])
-
-	const prevPage = () => {
-		rendition.prev()
-	}
-
-	const nextPage = () => {
-		rendition.next()
-	}
-
 	return (
-		<ButtonContainerStyled className="app">
-			<Button onClick={prevPage} variant="contained" color="primary">
-				<Prev />
-			</Button>
-			<Button onClick={nextPage} variant="contained" color="primary">
-				<Next />
-			</Button>
-		</ButtonContainerStyled>
+		<Provider store={store}>
+			<GlobalStyle />
+			<StylesProvider injectFirst>
+				<RenderingEpub />
+				<TranslatedContent />
+			</StylesProvider>
+		</Provider>
 	)
 }
 
-ReactDOM.render(
-	<React.Fragment>
-		<GlobalStyle />
-		<App />
-	</React.Fragment>,
-	document.getElementById("root")
-)
+ReactDOM.render(<App />, document.getElementById("root"))
